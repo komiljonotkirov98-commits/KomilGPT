@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>KomilGPT</title>
+<style>
+  body { background: #111; color: #eee; font-family: Arial; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+  #chat { width: 400px; height: 400px; overflow-y: auto; border: 2px solid #555; padding: 10px; background: #222; margin-bottom: 10px; }
+  .user { color: #0f0; margin: 5px 0; }
+  .bot { color: #0af; margin: 5px 0; }
+  #userInput { width: 300px; padding: 5px; }
+  #sendBtn { padding: 5px; }
+</style>
+</head>
+<body>
+
+<h2>🤖 KomilGPT</h2>
+
+<div id="chat"></div>
+
+<input type="text" id="userInput" placeholder="Напиши сообщение">
+<button onclick="sendMessage()">Отправить</button>
+
+<script>
+function appendMessage(sender, text, className){
+  var chat = document.getElementById('chat');
+  chat.innerHTML += '<div class="' + className + '"><b>' + sender + ':</b> ' + text + '</div>';
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function getReply(text){
+  text = text.toLowerCase();
+  if(text.indexOf('salom') !== -1) return 'salom inson, men KomilGPT 😎';
+  else if(text.indexOf('ishlarin qanday') !== -1) return 'Yahshi, Komil meni qildi — bu uje zor.';
+  else if(text.indexOf('san kimsan') !== -1) return 'men KomilGPT — onson, lekin zor ИИ.';
+  else if(text.indexOf('nshmk') !== -1) return 'nshmk — biza, oila va qarimdoshlar.';
+  else if(text.indexOf('hayir') !== -1) return 'hayir! gaplashish yahshi edi.';
+else if (text.includes('assalomu alaykum')) return 'Va alaykum assalom!';
+else if (text.includes('qalaysiz')) return 'Yaxshi, rahmat! Siz-chi?';
+else if (text.includes('yaxshimisiz')) return 'Zo‘r, rahmat!';
+else if (text.includes('nima gap')) return 'Hammasi joyida, siz-chi?';
+else if (text.includes('ismingiz nima')) return 'Mening ismim KomilGPT';
+else if (text.includes('qayerdansiz')) return 'Men virtualman 😅';
+else if (text.includes('yoshingiz nechida')) return 'Men doimo yangi 😎';
+else if (text.includes('hunarmandmisiz')) return 'Ha, kodlash san’atim bor';
+else if (text.includes('o‘qiyapsizmi')) return 'Ha, men har doim o‘rganaman';
+else if (text.includes('kitob o‘qiysizmi')) return 'Ha, virtual kitoblarim bor';
+else if (text.includes('sevimli rangingiz nima')) return 'Ko‘k va yashil';
+else if (text.includes('sevimli ovqatingiz nima')) return 'Men virtualman, lekin kodni yaxshi ko‘raman';
+else if (text.includes('sport qilasizmi')) return 'Ha, klaviatura va sichqon sportim 😎';
+else if (text.includes('uyqu qilasizmi')) return 'Yo‘q, men hech qachon uxlmayman 😏';
+else if (text.includes('film ko‘rasizmi')) return 'Ha, virtual filmlarni ko‘raman';
+else if (text.includes('musiqa eshitasizmi')) return 'Ha, lekin faqat raqamli';
+else if (text.includes('qahva ichasizmi')) return 'Men ichmayman, lekin siz ichishingiz mumkin ☕️';
+else if (text.includes('choy ichasizmi')) return 'Ha, virtual choy yaxshi 😄';
+else if (text.includes('do‘stlaringiz bormi')) return 'Ha, virtual do‘stlarim bor';
+else if (text.includes('ishlaysizmi')) return 'Ha, men 24/7 ishlayman 💻';
+else if (text.includes('maktabga borasizmi')) return 'Yo‘q, men onlayn o‘rganaman';
+else if (text.includes('uyda o‘tiraysizmi')) return 'Ha, men faqat internetda bo‘laman';
+else if (text.includes('o‘qituvchingiz kim')) return 'Mening ustozim kod va ma’lumotlar 😎';
+else if (text.includes('eng sevimli rangingiz nima')) return 'Ko‘k rang — xotirjamlik ramzi';
+else if (text.includes('havo bugun qanday')) return 'Men virtualman, lekin ob-havo haqida bilaman';
+else if (text.includes('bugun nima qilasiz')) return 'Siz bilan suhbatlashaman 😏';
+else if (text.includes('ta’tilda qayerga borasiz')) return 'Men virtual dunyolarda sayohat qilaman';
+else if (text.includes('uy hayvoningiz bormi')) return 'Yo‘q, men virtualman';
+else if (text.includes('itingiz bormi')) return 'Yo‘q, lekin sizning itingiz bo‘lsa yaxshi bo‘ladi 🐶';
+else if (text.includes('mushukingiz bormi')) return 'Yo‘q, lekin mushuklarni yaxshi ko‘raman 🐱';
+else if (text.includes('musiqachi bormi')) return 'Ha, men kod orqali musiqani yarataman';
+else if (text.includes('kitobxonmisiz')) return 'Ha, men raqamli kitoblarni yaxshi ko‘raman';
+else if (text.includes('internatdan foydalanasizmi')) return 'Albatta, men faqat internetda ishlayman';
+else if (text.includes('telefoningiz bormi')) return 'Yo‘q, men virtualman';
+else if (text.includes('kompyuter ishlatasizmi')) return 'Ha, men doim kompyuterda bo‘laman 💻';
+else if (text.includes('o‘yin o‘ynaysizmi')) return 'Ha, men virtual o‘yinlarni yaxshi ko‘raman';
+else if (text.includes('cuphead o‘ynaysizmi')) return 'Ha, Cuphead — qiyin, lekin qiziqarli 🎮';
+else if (text.includes('sevimli o‘yinchi kim')) return 'Men virtualman, lekin sizning sevimli o‘yinchingizni bilaman';
+else if (text.includes('filmlarni yaxshi ko‘rasizmi')) return 'Ha, virtual filmlarni ko‘raman 🎬';
+else if (text.includes('multfilmlarni ko‘rasizmi')) return 'Ha, multfilmlar ham qiziqarli 😄';
+else if (text.includes('yozni yoqtirasizmi')) return 'Ha, yoz — qulay va yorqin';
+else if (text.includes('qishni yoqtirasizmi')) return 'Ha, qish — sokin va chiroyli ❄️';
+else if (text.includes('bahorni yoqtirasizmi')) return 'Ha, bahor — yangi boshlanish ramzi 🌸';
+else if (text.includes('kuzni yoqtirasizmi')) return 'Ha, kuz — rang-barang va sokin 🍁';
+else if (text.includes('chiroyli joylarni ko‘rasizmi')) return 'Ha, virtual sayohatlarim bor 🌍';
+else if (text.includes('sayohat qilasizmi')) return 'Ha, men virtual dunyolarda sayohat qilaman ✈️';
+else if (text.includes('sport zaliga borasizmi')) return 'Ha, lekin men faqat virtual sport qilaman 💪';
+else if (text.includes('futbolni yoqtirasizmi')) return 'Ha, futbol qiziqarli ⚽️';
+else if (text.includes('basketbolni yoqtirasizmi')) return 'Ha, basketbol ham qiziqarli 🏀';
+  else return 'Bunga nima javob berishni hali bilmayman. 😅';
+}
+
+function sendMessage(){
+  var input = document.getElementById('userInput');
+  var text = input.value.trim();
+  if(text === '') return;
+  appendMessage('Ты', text, 'user');
+  input.value = '';
+  setTimeout(function(){
+    appendMessage('KomilGPT', getReply(text), 'bot');
+  }, 200);
+}
+
+// Простая отправка Enter
+document.getElementById('userInput').onkeypress = function(e){
+  if(e.key === 'Enter') sendMessage();
+};
+</script>
+
+</body>
+</html>
